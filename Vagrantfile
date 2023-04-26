@@ -20,7 +20,14 @@ Vagrant.configure("2") do |config|
       node.vm.network "private_network", ip: "192.168.56.#{10 + i}"
     end
   end
-
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+    config.vbguest.no_install = true
+    config.vbguest.no_remote = true
+  end
   config.vm.provision "shell", name: "install-essential-tools", path: "install-essential-tools.sh", privileged: false
   config.vm.provision "shell", name: "allow-bridge-nf-traffic", path: "allow-bridge-nf-traffic.sh", privileged: false
   config.vm.provision "shell", name: "install-containerd", path: "install-containerd.sh", privileged: false
