@@ -112,3 +112,10 @@ calico-system      replicaset.apps/calico-typha-555f9ccbb9              2       
 kube-system        replicaset.apps/coredns-787d4945fb                   2         2         2       11m
 tigera-operator    replicaset.apps/tigera-operator-7795f5d79b           1         1         1       8m38s
 ```
+## Common Issues
+### Fix “Too long: must have at most 262144 bytes”
+* Solution:  ``kubectl apply -f xyz --server-side``
+* scenarios:
+  * [In ArgoCD](https://foxutech.medium.com/how-to-fix-too-long-must-have-at-most-262144-bytes-in-argocd-2a00cddbbe99)
+  * [In kube-prometheus](https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue)
+* Server-Side Apply (SSA) has been generally available in Kubernetes [since the v1.22 release](https://kubernetes.io/blog/2021/08/06/server-side-apply-ga/) in August 2021.  
