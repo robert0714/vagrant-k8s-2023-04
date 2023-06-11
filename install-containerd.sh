@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$HOME" || exit 
-CONTAINERD_VERSION="1.6.13"
+CONTAINERD_VERSION="1.6.21"
 curl -LfsS https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}-linux-amd64.tar.gz -o containerd.tar.gz
 sudo tar Cxzvf /usr/local containerd.tar.gz
 sudo mkdir -pv /usr/local/lib/systemd/system
@@ -11,7 +11,7 @@ sudo systemctl enable --now containerd
 
 rm -fv containerd.tar.gz
 
-RUNC_VERSION="1.1.4"
+RUNC_VERSION="1.1.7"
 curl -LfsSO https://github.com/opencontainers/runc/releases/download/v${RUNC_VERSION}/runc.amd64
 sudo install -o root -g root -m 755 runc.amd64 /usr/local/sbin/runc
 
