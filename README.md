@@ -113,6 +113,26 @@ kube-system        replicaset.apps/coredns-787d4945fb                   2       
 tigera-operator    replicaset.apps/tigera-operator-7795f5d79b           1         1         1       8m38s
 ```
 ## Common Issues
+### Fix “Why I can not ssh to my Vagrant host? vagrant@master: Permission denied (publickey)”
+* Solution:
+  * If you have no publickey
+    ```bash
+    $ ssh-keygen -t rsa -b 4096
+    ```
+  * Modify Vagrantfile
+    ```
+      Vagrant.configure("2") do |config|
+        config.vm.box = "debian/bullseye64"
+        
+        config.ssh.insert_key = false
+        config.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
+        config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+
+        config.vm.provider "virtualbox" do |vb|
+          vb.memory = 2048
+          vb.cpus = 2
+        end
+    ```  
 ### Fix “Too long: must have at most 262144 bytes”
 * Solution:  ``kubectl apply -f xyz --server-side``
 * scenarios:

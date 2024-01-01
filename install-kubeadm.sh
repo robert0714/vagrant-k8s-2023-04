@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export DEBIAN_FRONTEND=noninteractive
-KUBE_VERSION=1.24.13-00
+KUBE_VERSION=1.24.17-00
 
 sudo apt-get update
 sudo apt-get install --quiet --yes apt-transport-https ca-certificates curl
