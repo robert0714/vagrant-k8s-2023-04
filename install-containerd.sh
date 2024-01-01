@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$HOME" || exit 
-CONTAINERD_VERSION="1.6.24"
+CONTAINERD_VERSION="1.7.11"
 curl -LfsS https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}-linux-amd64.tar.gz -o containerd.tar.gz
 sudo tar Cxzvf /usr/local containerd.tar.gz
 sudo mkdir -pv /usr/local/lib/systemd/system
